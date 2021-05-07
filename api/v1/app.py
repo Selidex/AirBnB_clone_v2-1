@@ -7,7 +7,7 @@ from os import getenv
 
 
 app = Flask(__name__)
-app.registar_blueprint(app_views)
+app.registar_blueprint(app_views, url_prefix="/api/v1")
 
 
 @app.teardown_appcontext
@@ -22,5 +22,5 @@ if __name__ == "__main__":
     if our_host is None:
         our_host = '0.0.0.0'
     if our_post is None:
-        our_post = '5000'
-    app.run(host=our_host, port=our_port, threaded=True)
+        our_post = 5000
+    app.run(host=our_host, port=our_post, threaded=True)
