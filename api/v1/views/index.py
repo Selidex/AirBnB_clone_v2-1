@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Still no clue what I am doing here"""
 from api.v1.views import app_views
-from Flask import jsonify
+from flask import jsonify
 
 
 @app_views.route('/status')

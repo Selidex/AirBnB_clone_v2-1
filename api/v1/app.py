@@ -7,7 +7,8 @@ from os import getenv
 
 
 app = Flask(__name__)
-app.registar_blueprint(app_views, url_prefix="/api/v1")
+app.register_blueprint(app_views)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 
 @app.teardown_appcontext
@@ -17,10 +18,10 @@ def teardown(context):
 
 
 if __name__ == "__main__":
-    our_host = getenv('HBNB_API_HOST')
-    our_post = getenv('HBNB_API_PORT')
-    if our_host is None:
-        our_host = '0.0.0.0'
-    if our_post is None:
-        our_post = 5000
-    app.run(host=our_host, port=our_post, threaded=True)
+    host = getenv('HBNB_API_HOST')
+    post = getenv('HBNB_API_PORT')
+    if host is None:
+        host = '0.0.0.0'
+    if post is None:
+        post = '5000'
+    app.run(host=host, port=post, threaded=True)
