@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Setting up API for HBNB"""
-from flask import Flask, escape, request, render_template, Blueprint
+from flask import Flask, escape, request, render_template, Blueprint, jsonify
 from models import storage
 from api.v1.views import app_views
 from os import getenv
@@ -16,6 +16,11 @@ def teardown(context):
     """ runs when app is done"""
     storage.close()
 
+
+@app.errorhandler(404)
+def error404(e):
+    """Returns our 404 error"""
+    return jsonify({"error": "Not found"})
 
 if __name__ == "__main__":
     host = getenv('HBNB_API_HOST')
