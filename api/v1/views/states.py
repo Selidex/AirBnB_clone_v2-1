@@ -50,3 +50,19 @@ def post_states_id():
     storage.new(state_var)
     storage.save()
     return(state_var.to_dict()), 201
+
+
+@app_views.route('/states/<state_id>', methods=['PUT'])
+def put_states_id(state_id):
+    """Retrieves the list of all State objects"""
+    obj = storage.get(State, state_id)
+    state = request.get_json()
+    if obj is None:
+        abort(404)
+    if state is None:
+        abort(400, "Not a JSON")
+    for key, value in state.items():
+        if key not in ['id', 'created_at', 'updated_at']:
+            setattr(obj, key, value)
+    obj.save()
+    return jsonify(obj.to_dict()), 200
