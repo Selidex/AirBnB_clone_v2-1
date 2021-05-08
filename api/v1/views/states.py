@@ -38,7 +38,7 @@ def del_states_id(state_id):
     return jsonify({}), 200
 
 
-@app_views.route('/states', methods=['POST'])
+@app_views.route('/states/', methods=['POST'])
 def post_states_id():
     """Retrieves the list of all State objects"""
     state = request.get_json()
