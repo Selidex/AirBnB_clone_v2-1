@@ -5,6 +5,7 @@ from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from models import storage
 from models.state import State
+import json
 
 
 @app_views.route('/states', methods=['GET'])
@@ -35,3 +36,17 @@ def del_states_id(state_id):
     obj.delete()
     storage.save()
     return jsonify({}), 200
+
+
+@app_views.route('/states', methods=['POST'])
+def post_states_id():
+    """Retrieves the list of all State objects"""
+    state = request.get_json()
+    if not state:
+        abort(400, "Not a JSON")
+    if 'name' not in state:
+        abort(400, "Missing name")
+    state_var = State(**state)
+    storage.new(state_var)
+    storage.save()
+    return(state_var.to_dict()), 201
