@@ -37,7 +37,7 @@ def del_amenities_id(amenity_id):
     return jsonify({}), 200
 
 
-@app_views.route('/amenities', methods=['POST'])
+@app_views.route('/amenities/', methods=['POST'])
 def post_amenities_id():
     amenity = request.get_json()
     if not amenity:
