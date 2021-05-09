@@ -64,7 +64,7 @@ def put_user_id(user_id):
     user = request.get_json()
     if user is None:
         abort(400, "Not a JSON")
-    for key, value in amen.items():
+    for key, value in user.items():
         if key not in ['id', 'email', 'created_at', 'updated_at']:
             setattr(obj, key, value)
     obj.save()
