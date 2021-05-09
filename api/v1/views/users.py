@@ -8,7 +8,7 @@ from models.user import User
 import json
 
 
-@app_views.route('/users')
+@app_views.route('/users', methods=['GET'])
 def users():
     """Retrieves all users"""
     obj_list = []
@@ -43,8 +43,6 @@ def post_user_id():
     user = request.get_json()
     if not user:
         abort(400, "Not a JSON")
-    if 'name' not in user:
-        abort(400, "Missing name")
     if 'email' not in user:
         abort(400, "Missing email")
     if 'password' not in user:
