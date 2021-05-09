@@ -43,7 +43,7 @@ def del_review_id(review_id):
     return jsonify({}), 200
 
 
-@app_views.route('/places/<place_id>/reviews', methods=['POST'])
+@app_views.route('/places/<place_id>/reviews/', methods=['POST'])
 def post_review(place_id):
     """Creates a new review in the place"""
     place = storage.get(Place, place_id)
