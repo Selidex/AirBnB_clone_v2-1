@@ -42,7 +42,7 @@ def del_places_id(place_id):
     return jsonify({}), 200
 
 
-@app_views.route('/cities/<city_id>/places', methods=['POST'])
+@app_views.route('/cities/<city_id>/places/', methods=['POST'])
 def post_place(city_id):
     """Creates a place in a city"""
     city = storage.get(City, city_id)
