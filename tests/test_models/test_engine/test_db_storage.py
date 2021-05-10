@@ -68,7 +68,7 @@ class TestDBStorageDocs(unittest.TestCase):
                             "{:s} method needs a docstring".format(func[0]))
 
 
-class TestFileStorage(unittest.TestCase):
+class TestDBStorage(unittest.TestCase):
     """Test the FileStorage class"""
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_all_returns_dict(self):
@@ -90,20 +90,7 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_get(self):
         """Test that get gets the objects"""
-        storage = DBStorage()
-        the_id = '2a0aeac6-bdf1-4360-b567-48db7c7e3dbf'
-        '''this is where we left off'''
-        the_state_id = storage.get(State, the_id)
-        self.assertEqual(the_state_id, '421a55f4-7d82-47d9-b54c-a76916479550')
-        self.assertIs(type, "class 'models.state.State'")
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count(self):
         """Test to count obj in storage"""
-        storage = DBStorage()
-        before = storage.count("State")
-        meowtana = State(name="Meow Island")
-        meowtana.save()
-        after = storage.count("State")
-        self.assertNotEqual(before, after)
-        self.assertEqual(before + 1, after)
