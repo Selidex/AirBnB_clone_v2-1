@@ -94,3 +94,10 @@ class TestDBStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count(self):
         """Test to count obj in storage"""
+        storage = DBStorage
+        before = storage.count("State")
+        meowtana = State(name="Meow Island")
+        meowtana.save()
+        after = storage.count("State")
+        self.assertNotEqual(before, after)
+        self.assertEqual(before + 1, after)
