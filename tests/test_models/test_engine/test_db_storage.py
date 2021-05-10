@@ -95,9 +95,9 @@ class TestDBStorage(unittest.TestCase):
     def test_count(self):
         """Test to count obj in storage"""
         storage = DBStorage
-        before = storage.count(State)
+        before = storage.count()
         meowtana = State(name="Meow Island")
         meowtana.save()
-        after = storage.count(State)
+        after = storage.count()
         self.assertNotEqual(before, after)
         self.assertEqual(before + 1, after)
