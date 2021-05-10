@@ -6,6 +6,7 @@ Contains the TestDBStorageDocs and TestDBStorage classes
 from datetime import datetime
 import inspect
 import models
+from models import storage
 from models.engine import db_storage
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -94,10 +95,9 @@ class TestDBStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count(self):
         """Test to count obj in storage"""
-        storage = DBStorage
-        before = storage.count()
+        before = storage.count(State)
         meowtana = State(name="Meow Island")
         meowtana.save()
-        after = storage.count()
+        after = storage.count(State)
         self.assertNotEqual(before, after)
         self.assertEqual(before + 1, after)
